@@ -208,43 +208,131 @@ This is an account management endpoint. Use it to manage authentication, balance
   }
 
   // LIVE TICKS
-  if(data.tick){
+  if(data.tick){[Market Data](/docs/data)
 
-    const price =
-      parseFloat(
-        data.tick.quote
-      );
+# Ticks Stream
 
-    document.getElementById(
-      "v75"
-    ).innerText = price;
+No auth
 
-    if(lastPrice === null){
-      lastPrice = price;
-    }
+Subscribe to tick stream for a specific symbol.
 
-    candleSeries.update({
+## Request & Response
 
-      time: time++,
+## Request Schema
 
-      open:lastPrice,
+#### `ticks` — Required
 
-      high:Math.max(
-        lastPrice,
-        price
-      ),
+The short symbol name or array of symbols (obtained from `active_symbols` call).
 
-      low:Math.min(
-        lastPrice,
-        price
-      ),
+#### `subscribe` — Optional `integer | enum`
 
-      close:price
-    });
+[Optional] If set to 1, will send updates whenever a new tick is received.
 
-    lastPrice = price;
+Allowed values: `1`
+
+#### `passthrough` — Optional `object`
+
+[Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
+
+#### `req_id` — Optional `integer`
+
+[Optional] Used to map request to response.
+
+## Response Schema
+
+#### `tick` — Optional `object`
+
+Tick by tick list of streamed data
+
+**Object Properties:**
+
+  ##### `ask` — Optional `number`
+
+  Market ask at the epoch
+
+  ##### `bid` — Optional `number`
+
+  Market bid at the epoch
+
+  ##### `epoch` — Optional `integer`
+
+  Epoch time of the tick
+
+  ##### `id` — Optional `string`
+
+  A per-connection unique identifier. Can be passed to the `forget` API call to unsubscribe.
+
+  ##### `pip_size` — Required `number`
+
+  Indicates the number of decimal points that the returned amounts must be displayed with
+
+  ##### `quote` — Optional `number`
+
+  Market value at the epoch
+
+  ##### `symbol` — Optional `string`
+
+  Symbol
+
+#### `subscription` — Optional `object`
+
+For subscription requests only.
+
+**Object Properties:**
+
+  ##### `id` — Required `string`
+
+  A per-connection unique identifier. Can be passed to the `forget` API call to unsubscribe.
+
+#### `echo_req` — Required `object`
+
+Echo of the request made.
+
+#### `msg_type` — Required `string | enum`
+
+Type of the response.
+
+Allowed values: `"tick"`
+
+#### `req_id` — Optional `integer`
+
+Optional field sent in request to map to response, present only when request contains `req_id`.
+
+## Examples
+
+### Request Example
+
+```json
+{
+  "ticks": "R_50",
+  "subscribe": 1
+}
+```
+
+### Response Example
+
+```json
+{
+  "tick": {
+    "ask": 123.45,
+    "bid": 123.44,
+    "epoch": 1234567890,
+    "id": "xyz123",
+    "quote": 123.445,
+    "symbol": "R_50"
+  },
+  "msg_type": "tick",
+  "subscription": {
+    "id": "xyz123"
   }
-};
+}
+```
+
+## About ticks
+
+The `ticks` endpoint subscribe to tick stream for a specific symbol.
+
+This is a market data endpoint. Use it to retrieve symbols, contracts, ticks, and historical data. Most data endpoints support subscriptions for real-time updates.
 
 // BUY CALL
 document.getElementById(
