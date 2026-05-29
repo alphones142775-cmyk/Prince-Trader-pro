@@ -1,0 +1,280 @@
+style.css
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#050b14;
+  color:white;
+  font-family:Arial,sans-serif;
+  overflow:hidden;
+}
+
+/* TOPBAR */
+
+.topbar{
+  height:85px;
+  background:#09111f;
+  border-bottom:1px solid #122033;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 25px;
+}
+
+.logo{
+  font-size:34px;
+  font-weight:bold;
+}
+
+.logo span{
+  color:#00ff99;
+}
+
+.nav-menu{
+  display:flex;
+  gap:14px;
+}
+
+.nav-menu button{
+  background:transparent;
+  border:none;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:5px;
+  cursor:pointer;
+  padding:10px;
+  transition:0.3s;
+}
+
+.nav-menu button i{
+  font-size:22px;
+}
+
+.nav-menu button:hover,
+.active{
+  color:#00ff99;
+}
+
+.profile-area{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.balance-card{
+  text-align:right;
+}
+
+.balance-card small{
+  color:#00ff99;
+}
+
+.profile{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.profile img{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+}
+
+/* DASHBOARD */
+
+.dashboard{
+  display:flex;
+  height:calc(100vh - 85px);
+}
+
+/* SIDEBAR */
+
+.sidebar{
+  width:260px;
+  background:#08111f;
+  border-right:1px solid #122033;
+  padding:20px;
+}
+
+.profile-card{
+  background:#0d1728;
+  border-radius:20px;
+  padding:20px;
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.profile-card img{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  margin-bottom:15px;
+}
+
+.profile-card span{
+  color:#00ff99;
+}
+
+.account-box{
+  margin-top:20px;
+}
+
+.account-box h1{
+  color:#00ff99;
+}
+
+.side-buttons{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.side-buttons button{
+  background:#0d1728;
+  border:none;
+  color:white;
+  padding:15px;
+  border-radius:12px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.side-buttons button:hover,
+.side-active{
+  background:#00ff99;
+  color:black;
+}
+
+/* MAIN */
+
+.main-content{
+  flex:1;
+  padding:20px;
+}
+
+.market-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.market-card{
+  background:#0d1728;
+  padding:20px;
+  border-radius:16px;
+}
+
+.market-card span{
+  color:#00ff99;
+  font-size:20px;
+}
+
+.chart-section{
+  height:470px;
+  background:#0d1728;
+  border-radius:20px;
+  padding:15px;
+  margin-bottom:20px;
+}
+
+#chart-container{
+  width:100%;
+  height:100%;
+}
+
+.info-panels{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.panel{
+  background:#0d1728;
+  padding:20px;
+  border-radius:16px;
+}
+
+.buy-signal{
+  margin-top:15px;
+  background:#00ff9930;
+  color:#00ff99;
+  padding:12px;
+  border-radius:10px;
+}
+
+.sell-signal{
+  margin-top:10px;
+  background:#ff003330;
+  color:#ff0033;
+  padding:12px;
+  border-radius:10px;
+}
+
+/* TRADE PANEL */
+
+.trade-panel{
+  width:320px;
+  background:#08111f;
+  border-left:1px solid #122033;
+  padding:25px;
+}
+
+.trade-panel h2{
+  color:#00ff99;
+  margin-bottom:25px;
+}
+
+.trade-panel label{
+  display:block;
+  margin-top:20px;
+  margin-bottom:10px;
+}
+
+.trade-panel input,
+.trade-panel select{
+  width:100%;
+  padding:14px;
+  background:#0d1728;
+  border:none;
+  color:white;
+  border-radius:12px;
+}
+
+.trade-buttons{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  margin-top:25px;
+}
+
+#buyCall{
+  background:#00ff99;
+  color:black;
+}
+
+#buyPut{
+  background:#ff0033;
+  color:white;
+}
+
+.trade-buttons button{
+  border:none;
+  padding:16px;
+  border-radius:12px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.trade-results{
+  display:flex;
+  justify-content:space-between;
+  margin-top:30px;
+}
