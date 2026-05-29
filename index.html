@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FutureX Trading Platform</title>
+
+  <link rel="stylesheet" href="style.css"/>
+
+  <script src="https://cdn.jsdelivr.net/npm/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="logo">
+      <h1>FUTURE<span>X</span></h1>
+      <p>Trading Platform</p>
+    </div>
+
+    <div class="profile">
+      <img src="https://i.pravatar.cc/100" />
+      <h3>Alex Trader</h3>
+      <p>ID: FXR4587</p>
+    </div>
+
+    <div class="balance">
+      <h2>$24,568.45</h2>
+      <span>USD REAL</span>
+    </div>
+
+    <div class="actions">
+      <button>Deposit</button>
+      <button>Withdraw</button>
+      <button>Transfer</button>
+    </div>
+
+    <nav>
+      <a class="active">Dashboard</a>
+      <a>Free Bots</a>
+      <a>Strategies</a>
+      <a>Analysis</a>
+      <a>D-Trader</a>
+      <a>Signals</a>
+      <a>Chats</a>
+      <a>Copy Trading</a>
+    </nav>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-content">
+
+    <!-- TOP MARKETS -->
+    <div class="markets">
+
+      <div class="market-card">
+        <h4>Volatility 75</h4>
+        <p>23,452.72</p>
+        <span class="green">+1.25%</span>
+      </div>
+
+      <div class="market-card">
+        <h4>Volatility 100</h4>
+        <p>12,856.41</p>
+        <span class="green">+0.65%</span>
+      </div>
+
+      <div class="market-card">
+        <h4>Boom 500</h4>
+        <p>8,745.33</p>
+        <span class="green">+2.15%</span>
+      </div>
+
+      <div class="market-card">
+        <h4>Crash 500</h4>
+        <p>1,245.67</p>
+        <span class="red">-0.35%</span>
+      </div>
+
+    </div>
+
+    <!-- CHART SECTION -->
+    <div class="chart-section">
+
+      <div class="chart-header">
+        <h2>Volatility 75 (1s) Index</h2>
+
+        <select id="timeframe">
+          <option>1s</option>
+          <option>1m</option>
+          <option>5m</option>
+        </select>
+      </div>
+
+      <div id="chart"></div>
+
+    </div>
+
+    <!-- BOTTOM GRID -->
+    <div class="bottom-grid">
+
+      <div class="summary">
+        <h3>Account Summary</h3>
+
+        <div class="summary-item">
+          <span>Balance</span>
+          <strong>$24,568.45</strong>
+        </div>
+
+        <div class="summary-item">
+          <span>Profit</span>
+          <strong class="green">$3,245.85</strong>
+        </div>
+
+        <div class="summary-item">
+          <span>Invested</span>
+          <strong>$8,456.70</strong>
+        </div>
+      </div>
+
+      <div class="signals">
+        <h3>Live Signals</h3>
+
+        <div class="signal green">
+          Volatility 75 → CALL
+        </div>
+
+        <div class="signal red">
+          Boom 500 → PUT
+        </div>
+
+        <div class="signal green">
+          Crash 500 → CALL
+        </div>
+
+      </div>
+
+      <div class="traders">
+        <h3>Top Traders</h3>
+
+        <div class="trader">
+          <span>ProTraderX</span>
+          <strong>+12.45%</strong>
+        </div>
+
+        <div class="trader">
+          <span>SmartMoney</span>
+          <strong>+8.75%</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- RIGHT PANEL -->
+  <aside class="trade-panel">
+
+    <h2>Manual Trade</h2>
+
+    <label>Account</label>
+    <select>
+      <option>USD REAL</option>
+    </select>
+
+    <label>Amount</label>
+    <input type="number" id="amount" value="100"/>
+
+    <label>Duration</label>
+    <select>
+      <option>1 TICK</option>
+      <option>5 TICKS</option>
+      <option>10 TICKS</option>
+    </select>
+
+    <div class="trade-buttons">
+      <button class="buy">CALL</button>
+      <button class="sell">PUT</button>
+    </div>
+
+    <div class="trade-info">
+      <p>Payout: <span>$95.00</span></p>
+      <p>Profit: <span class="green">+$95.00</span></p>
+    </div>
+
+    <button class="place-buy">
+      PLACE CALL
+    </button>
+
+    <button class="place-sell">
+      PLACE PUT
+    </button>
+
+  </aside>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
