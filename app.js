@@ -9,7 +9,225 @@ const token = "pat_df0cbb0150b40589d016c49888fea3098f54ef3d5dde910f8e0ac4ef9f9fb
 // CONNECT TO DERIV
 const connection = new WebSocket(
   `wss://ws.derivws.com/websockets/v3?app_id=${app_id}`
+);[Options Setup](/docs/options)
+
+# WebSockets
+
+Post Auth required
+
+Get a WebSocket URL via OTP and connect for real-time Options trading
+
+## Endpoint
+
+Post `/trading/v1/options/accounts/{accountId}/otp`
+
+Base URL: `https://api.derivws.com`
+
+## Request Schema
+
+#### `headers` — Required `object`
+
+**Object Properties:**
+
+  ##### `Deriv-App-ID` — Required `33p7PVqGTbhzPMv1GNtXr`
+
+  Application identifier
+
+  ##### `Authorization` — Required `https://alphones142775-cmyk.github.io/Trading-platform/`
+
+  Bearer token for authentication
+
+#### `path` — Required `object`
+
+**Object Properties:**
+
+  ##### `accountId` — Required ``
+
+  Options Trading account ID that the OTP is requested for
+
+## Response Schema
+
+#### `data` — Required `object`
+
+**Object Properties:**
+
+  ##### `url` — Required `string`
+
+  WebSocket URL with embedded OTP — connect to this URL directly
+
+#### `meta` — Required `object`
+
+**Object Properties:**
+
+  ##### `endpoint` — Required `string`
+
+  The current endpoint
+
+  ##### `method` — Required `string | enum`
+
+  The current HTTP request method
+
+  Allowed values: `"GET"`, `"POST"`, `"PUT"`, `"DELETE"`
+
+  ##### `timing` — Required `integer`
+
+  Time for the API to serve the request
+
+## Examples
+
+### Request Example
+
+```json
+POST /trading/v1/options/accounts/DOT90004580/otp
+Headers:
+  Deriv-App-ID: YOUR_APP_ID
+  Authorization: Bearer YOUR_AUTH_TOKEN
+
+Path Parameters:
+  - accountId: string (Options Trading account ID that OTP is requested for)
+```
+
+### Response Example
+
+```json
+{
+  "data": {
+    "url": "wss://api.derivws.com/trading/v1/options/ws/demo?otp=abc123xyz789"
+  },
+  "meta": {
+    "endpoint": "/accounts/DOT90004580/otp",
+    "method": "POST",
+    "timing": 89
+  }
+}
+```
+
+## Status Codes
+
+200 OTP generated successfully — response contains the WebSocket URL
+
+400 Bad request - Invalid account ID
+
+401 Unauthorized - Invalid or missing Bearer token
+
+500 Internal server error
+
+## Error Responses
+
+400 Bad request
+
+```
+{
+  "errors": [
+    {
+      "status": 400,
+      "code": "ValidationError",
+      "message": "Invalid account ID format"
+    }
+  ],
+  "meta": {
+    "endpoint": "/accounts/INVALID/otp",
+    "method": "POST",
+    "timing": 12
+  }
+}
+```
+
+401 Unauthorized
+
+```
+{
+  "errors": [
+    {
+      "status": 401,
+      "code": "Unauthorized",
+      "message": "Invalid or missing authentication credentials"
+    }
+  ],
+  "meta": {
+    "endpoint": "/accounts/DOT90004580/otp",
+    "method": "POST",
+    "timing": 45
+  }
+}
+```
+
+500 Internal server error
+
+```
+{
+  "errors": [
+    {
+      "status": 500,
+      "code": "InternalServerError",
+      "message": "Failed to generate OTP"
+    }
+  ],
+  "meta": {
+    "endpoint": "/accounts/DOT90004580/otp",
+    "method": "POST",
+    "timing": 234
+  }
+}
+```
+
+##### Authentication Required
+
+This endpoint requires the `Deriv-App-ID` header to identify your application. OAuth2 Scope: `trade`
+
+## About websocket
+
+The `websocket` endpoint get a WebSocket URL via OTP and connect for real-time Options trading
+
+### Step 1: Get your WebSocket URL
+
+Call the OTP endpoint with your Bearer token. The response contains a ready-to-use WebSocket URL that already includes the one-time password as a query parameter.
+
+```
+// Request OTP — returns a WebSocket URL
+const response = await fetch(
+  'https://api.derivws.com/trading/v1/options/accounts/DOT90004580/otp',
+  {
+    method: 'POST',
+    headers: {
+      'Deriv-App-ID': 'YOUR_APP_ID',
+      'Authorization': 'Bearer YOUR_AUTH_TOKEN',
+    },
+  }
 );
+const { data } = await response.json();
+// data.url === "wss://api.derivws.com/trading/v1/options/ws/demo?otp=abc123xyz789"
+```
+
+### Step 2: Connect to the WebSocket
+
+Use the URL returned in the previous step directly as your WebSocket endpoint. No additional authentication headers are needed — the OTP in the URL handles authentication.
+
+```
+// Connect using the URL from the OTP response
+const ws = new WebSocket(data.url);
+
+ws.onopen = () => {
+  console.log('Connected to Options trading WebSocket');
+};
+
+ws.onmessage = (event) => {
+  const message = JSON.parse(event.data);
+  console.log('Received:', message);
+};
+
+ws.onerror = (error) => {
+  console.error('WebSocket error:', error);
+};
+```
+
+### OTP Lifetime
+
+OTP tokens are short-lived and must be used immediately after generation. If the token expires before you connect, request a new one by calling the OTP endpoint again.
+
+### Public WebSocket (no auth)
+
+For read-only public market data, you can connect to `wss://api.derivws.com/trading/v1/options/ws/public` directly without any authentication or OTP.
 
 // CREATE CHART
 const chart = LightweightCharts.createChart(
