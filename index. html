@@ -1,0 +1,736 @@
+index.html
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>FutureX Trading Platform</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- BOX ICONS -->
+  <link
+    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- LIGHTWEIGHT CHART -->
+  <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+
+<body>
+
+  <!-- TOP NAVBAR -->
+  <header class="topbar">
+
+    <div class="logo">
+      FUTURE<span>X</span>
+    </div>
+
+    <nav class="top-menu">
+
+      <button class="active">
+        <i class='bx bx-grid-alt'></i>
+        Dashboard
+      </button>
+
+      <button>
+        <i class='bx bx-bot'></i>
+        Free Bots
+      </button>
+
+      <button>
+        <i class='bx bx-network-chart'></i>
+        Strategies
+      </button>
+
+      <button>
+        <i class='bx bx-line-chart'></i>
+        Analysis
+      </button>
+
+      <button>
+        <i class='bx bx-candles'></i>
+        D-Trader
+      </button>
+
+      <button>
+        <i class='bx bx-signal-5'></i>
+        Signals
+      </button>
+
+      <button>
+        <i class='bx bx-message-rounded'></i>
+        Chats
+      </button>
+
+      <button>
+        <i class='bx bx-copy'></i>
+        Copy Trading
+      </button>
+
+    </nav>
+
+    <div class="profile-section">
+
+      <div class="balance-box">
+        <small>USD REAL</small>
+        <h3 id="balance">$0.00</h3>
+      </div>
+
+      <div class="profile">
+
+        <img
+          src="https://i.pravatar.cc/100"
+          alt=""
+        />
+
+        <div>
+          <h4>Alex Trader</h4>
+          <small>Professional Trader</small>
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <!-- MAIN DASHBOARD -->
+  <div class="dashboard">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="user-card">
+
+        <img
+          src="https://i.pravatar.cc/80"
+          alt=""
+        />
+
+        <h3>Alex Trader</h3>
+
+        <span class="pro">PRO</span>
+
+        <p>ID: FXR4587</p>
+
+        <div class="account-balance">
+          <small>Account Balance</small>
+          <h2>$24,568.45</h2>
+        </div>
+
+      </div>
+
+      <div class="quick-menu">
+
+        <button class="menu-active">
+          Dashboard
+        </button>
+
+        <button>Free Bots</button>
+
+        <button>Strategies</button>
+
+        <button>Analysis</button>
+
+        <button>D-Trader</button>
+
+        <button>Signals</button>
+
+        <button>Chats</button>
+
+        <button>Copy Trading</button>
+
+      </div>
+
+    </aside>
+
+    <!-- CENTER AREA -->
+    <main class="main-content">
+
+      <!-- MARKET CARDS -->
+      <section class="market-strip">
+
+        <div class="market-card">
+          <h4>Volatility 75</h4>
+          <span id="v75">0.00</span>
+        </div>
+
+        <div class="market-card">
+          <h4>Volatility 100</h4>
+          <span id="v100">0.00</span>
+        </div>
+
+        <div class="market-card">
+          <h4>Boom 500</h4>
+          <span id="boom500">0.00</span>
+        </div>
+
+        <div class="market-card">
+          <h4>Crash 500</h4>
+          <span id="crash500">0.00</span>
+        </div>
+
+      </section>
+
+      <!-- CHART -->
+      <section class="chart-wrapper">
+
+        <div id="chart-container"></div>
+
+      </section>
+
+      <!-- BOTTOM PANELS -->
+      <section class="bottom-panels">
+
+        <div class="panel">
+          <h3>Live Signals</h3>
+
+          <div class="signal buy">
+            BUY V75
+          </div>
+
+          <div class="signal sell">
+            SELL Boom 500
+          </div>
+
+        </div>
+
+        <div class="panel">
+          <h3>Top Traders</h3>
+
+          <div class="trader">
+            ProTraderX +12.4%
+          </div>
+
+          <div class="trader">
+            SmartMoney +8.7%
+          </div>
+
+        </div>
+
+        <div class="panel">
+          <h3>Market News</h3>
+
+          <p>
+            Volatility index moving upward strongly.
+          </p>
+
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- RIGHT TRADING PANEL -->
+    <aside class="trade-panel">
+
+      <h2>D-Trader LIVE</h2>
+
+      <label>Stake</label>
+
+      <input
+        type="number"
+        id="stake"
+        value="10"
+      />
+
+      <label>Duration</label>
+
+      <select id="duration">
+        <option>1 Tick</option>
+        <option>5 Ticks</option>
+        <option>1 Minute</option>
+      </select>
+
+      <div class="trade-buttons">
+
+        <button id="buyCall">
+          PLACE CALL
+        </button>
+
+        <button id="buyPut">
+          PLACE PUT
+        </button>
+
+      </div>
+
+      <div class="trade-info">
+
+        <div>
+          <span>Payout</span>
+          <strong>95%</strong>
+        </div>
+
+        <div>
+          <span>Profit</span>
+          <strong>$95.00</strong>
+        </div>
+
+      </div>
+
+    </aside>
+
+  </div>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
+
+---
+
+style.css
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#050b14;
+  color:white;
+  font-family:Arial, sans-serif;
+  overflow:hidden;
+}
+
+/* TOPBAR */
+
+.topbar{
+  height:80px;
+  background:#09111f;
+  border-bottom:1px solid #122033;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 25px;
+}
+
+.logo{
+  font-size:34px;
+  font-weight:bold;
+}
+
+.logo span{
+  color:#00ff99;
+}
+
+.top-menu{
+  display:flex;
+  gap:12px;
+}
+
+.top-menu button{
+  background:transparent;
+  border:none;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:5px;
+  cursor:pointer;
+  padding:10px;
+  transition:0.3s;
+}
+
+.top-menu button i{
+  font-size:22px;
+}
+
+.top-menu button:hover,
+.top-menu .active{
+  color:#00ff99;
+}
+
+.profile-section{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.balance-box{
+  text-align:right;
+}
+
+.balance-box small{
+  color:#00ff99;
+}
+
+.profile{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.profile img{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+}
+
+/* DASHBOARD */
+
+.dashboard{
+  display:flex;
+  height:calc(100vh - 80px);
+}
+
+/* SIDEBAR */
+
+.sidebar{
+  width:260px;
+  background:#08111f;
+  border-right:1px solid #122033;
+  padding:20px;
+}
+
+.user-card{
+  background:#0d1728;
+  border-radius:20px;
+  padding:20px;
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.user-card img{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  margin-bottom:15px;
+}
+
+.pro{
+  background:#00ff99;
+  color:black;
+  padding:4px 10px;
+  border-radius:10px;
+  font-size:12px;
+}
+
+.account-balance{
+  margin-top:20px;
+}
+
+.account-balance h2{
+  color:#00ff99;
+}
+
+.quick-menu{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.quick-menu button{
+  background:#0d1728;
+  border:none;
+  color:white;
+  padding:14px;
+  border-radius:12px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.quick-menu button:hover,
+.menu-active{
+  background:#00ff99;
+  color:black;
+}
+
+/* MAIN CONTENT */
+
+.main-content{
+  flex:1;
+  padding:20px;
+  overflow:auto;
+}
+
+.market-strip{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.market-card{
+  background:#0d1728;
+  padding:20px;
+  border-radius:16px;
+}
+
+.market-card span{
+  color:#00ff99;
+  font-size:20px;
+}
+
+.chart-wrapper{
+  height:480px;
+  background:#0d1728;
+  border-radius:20px;
+  padding:15px;
+  margin-bottom:20px;
+}
+
+#chart-container{
+  width:100%;
+  height:100%;
+}
+
+.bottom-panels{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.panel{
+  background:#0d1728;
+  padding:20px;
+  border-radius:16px;
+}
+
+.signal{
+  padding:12px;
+  margin-top:10px;
+  border-radius:10px;
+}
+
+.buy{
+  background:#00ff9940;
+  color:#00ff99;
+}
+
+.sell{
+  background:#ff003340;
+  color:#ff0033;
+}
+
+/* TRADE PANEL */
+
+.trade-panel{
+  width:320px;
+  background:#08111f;
+  border-left:1px solid #122033;
+  padding:25px;
+}
+
+.trade-panel h2{
+  margin-bottom:25px;
+  color:#00ff99;
+}
+
+.trade-panel label{
+  display:block;
+  margin-bottom:8px;
+  margin-top:20px;
+}
+
+.trade-panel input,
+.trade-panel select{
+  width:100%;
+  padding:14px;
+  background:#0d1728;
+  border:none;
+  color:white;
+  border-radius:12px;
+}
+
+.trade-buttons{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  margin-top:25px;
+}
+
+#buyCall{
+  background:#00ff99;
+  color:black;
+}
+
+#buyPut{
+  background:#ff0033;
+  color:white;
+}
+
+.trade-buttons button{
+  border:none;
+  padding:16px;
+  border-radius:12px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.trade-info{
+  margin-top:30px;
+  display:flex;
+  justify-content:space-between;
+}
+
+---
+
+app.js
+
+// DERIV APP ID
+const app_id = "YOUR_APP_ID";
+
+// DERIV API TOKEN
+const token = "YOUR_API_TOKEN";
+
+// WEBSOCKET
+const connection = new WebSocket(
+  `wss://ws.derivws.com/websockets/v3?app_id=${app_id}`
+);
+
+// CHART
+const chart = LightweightCharts.createChart(
+  document.getElementById("chart-container"),
+  {
+    layout:{
+      background:{
+        color:"#0d1728"
+      },
+      textColor:"#DDD"
+    },
+
+    grid:{
+      vertLines:{
+        color:"#122033"
+      },
+      horzLines:{
+        color:"#122033"
+      }
+    },
+
+    width:
+      document.getElementById(
+        "chart-container"
+      ).clientWidth,
+
+    height:
+      document.getElementById(
+        "chart-container"
+      ).clientHeight
+  }
+);
+
+const candleSeries =
+  chart.addCandlestickSeries();
+
+// AUTHORIZE
+connection.onopen = () => {
+
+  connection.send(
+    JSON.stringify({
+      authorize: token
+    })
+  );
+
+  // LIVE TICKS
+  connection.send(
+    JSON.stringify({
+      ticks:"R_75",
+      subscribe:1
+    })
+  );
+};
+
+let lastPrice = null;
+let time = Math.floor(Date.now()/1000);
+
+// RECEIVE DATA
+connection.onmessage = (msg) => {
+
+  const data = JSON.parse(msg.data);
+
+  // BALANCE
+  if(data.authorize){
+
+    document.getElementById(
+      "balance"
+    ).innerText =
+      "$" +
+      data.authorize.balance;
+  }
+
+  // LIVE CHART
+  if(data.tick){
+
+    const price =
+      parseFloat(data.tick.quote);
+
+    document.getElementById(
+      "v75"
+    ).innerText = price;
+
+    if(lastPrice === null){
+      lastPrice = price;
+    }
+
+    candleSeries.update({
+      time: time++,
+      open:lastPrice,
+      high:Math.max(lastPrice, price),
+      low:Math.min(lastPrice, price),
+      close:price
+    });
+
+    lastPrice = price;
+  }
+};
+
+// BUY CALL
+document.getElementById(
+  "buyCall"
+).onclick = () => {
+
+  connection.send(
+    JSON.stringify({
+      proposal:1,
+      amount:
+        Number(
+          document.getElementById(
+            "stake"
+          ).value
+        ),
+
+      basis:"stake",
+      contract_type:"CALL",
+      currency:"USD",
+      duration:1,
+      duration_unit:"t",
+      symbol:"R_75"
+    })
+  );
+};
+
+// BUY PUT
+document.getElementById(
+  "buyPut"
+).onclick = () => {
+
+  connection.send(
+    JSON.stringify({
+      proposal:1,
+      amount:
+        Number(
+          document.getElementById(
+            "stake"
+          ).value
+        ),
+
+      basis:"stake",
+      contract_type:"PUT",
+      currency:"USD",
+      duration:1,
+      duration_unit:"t",
+      symbol:"R_75"
+    })
+  );
+};
